@@ -1,0 +1,19 @@
+{
+  "name": "triearticles",
+  "version": "1.0.0",
+  "description": "Assignment 3 for CS 590 WS by Faris Ibrahim and Joseph Kuhn",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FKnight9/TrieArticles.git"
+  },
+  "author": "Faris Ibrahim and Joseph Kuhn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FKnight9/TrieArticles/issues"
+  },
+  "homepage": "https://github.com/FKnight9/TrieArticles#readme"
+}
