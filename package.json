@@ -4,6 +4,7 @@
   "description": "Assignment 3 for CS 590 WS by Faris Ibrahim and Joseph Kuhn",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/FKnight9/TrieArticles/issues"
   },
-  "homepage": "https://github.com/FKnight9/TrieArticles#readme"
+  "homepage": "https://github.com/FKnight9/TrieArticles#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  }
 }
