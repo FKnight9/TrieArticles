@@ -5,7 +5,6 @@ class TrieNode {
         this.children = {};
         this.index = 0;
         this.isEnd = false;
-        console.log("Constructor has run");
     }
 }
 

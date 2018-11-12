@@ -5,7 +5,6 @@ class Trie {
     constructor() {
         this.root = new TrieNode(null);
         let companies = help.cleanInputFromFile('companies.dat');
-        this.createTrie(companies);
         this.frequencyTable = [];
         for (let i = 0; i < companies.length; i++) {
             // Enter all the companies primary names into the
@@ -19,8 +18,9 @@ class Trie {
                 let node = this.insert(companies[i][j]);
                 node.index = i;
             }
-            console.log("Trie has run constructor");
         }
+        console.log("Trie constructo has finished");
+        console.log(companies);
     }
 
     // Inserts word into trie starting from root node
