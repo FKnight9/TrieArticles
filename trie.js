@@ -4,19 +4,19 @@ const help = require("./help");
 class Trie {
     constructor() {
         this.root = new TrieNode(null);
-        let companies = help.cleanInputFromFile('companies.dat');
+        this.companies = help.cleanInputFromFile('companies.dat');
         this.frequencyTable = [];
         this.frequencyTable.push(["Company", "Hit Count", "Relevance"]);
-        for (let i = 0; i < companies.length; i++) {
+        for (let i = 0; i < this.companies.length; i++) {
             // Enter all the companies primary names into the
             // frequency table
             this.frequencyTable[i+1] = [];
-            this.frequencyTable[i+1][0] = companies[i][0];
+            this.frequencyTable[i+1][0] = this.companies[i][0];
             this.frequencyTable[i+1][1] = 0;
             // Insert the company names into the Trie with the
             // same index to keep track of the company
-            for (let j = 0; j < companies[i].length; j++) {
-                let node = this.insert(companies[i][j]);
+            for (let j = 0; j < this.companies[i].length; j++) {
+                let node = this.insert(this.companies[i][j]);
                 node.index = i;
             }
         }
@@ -59,7 +59,7 @@ class Trie {
             this.frequencyTable[i][2] = (this.frequencyTable[i][1] / total) * 100;
             totalHit += this.frequencyTable[i][1];
         }
-        let totalRelevence = (totalHit / total) * 100;
+        let totalRelevence = ((totalHit / total) * 100).toFixed(4);
         this.frequencyTable.push(["Total", totalHit, totalRelevence]);
     }
 }

@@ -7,16 +7,8 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FKnight9/TrieArticles.git"
-  },
   "author": "Faris Ibrahim and Joseph Kuhn",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FKnight9/TrieArticles/issues"
-  },
-  "homepage": "https://github.com/FKnight9/TrieArticles#readme",
   "dependencies": {
     "readline-sync": "^1.4.9",
     "table": "^5.1.0"
