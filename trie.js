@@ -20,8 +20,6 @@ class Trie {
                 node.index = i;
             }
         }
-        console.log("Trie constructo has finished");
-        console.log(companies);
     }
 
     // Inserts word into trie starting from root node
@@ -43,10 +41,8 @@ class Trie {
 
     // Find the word in the trie given a starting node and a word
     find(node, word) {
-        console.log(word);
         for (let i = 0; i < word.length; i++) {
             let char = word[i];
-            console.log("This is the char  " + char);
             if (!(char in node.children)) {
                 return node.children[char];
             }
