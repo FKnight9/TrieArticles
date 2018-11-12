@@ -6,12 +6,13 @@ class Trie {
         this.root = new TrieNode(null);
         let companies = help.cleanInputFromFile('companies.dat');
         this.frequencyTable = [];
+        this.frequencyTable.push(["Company", "Hit Count", "Relevance"]);
         for (let i = 0; i < companies.length; i++) {
             // Enter all the companies primary names into the
             // frequency table
-            this.frequencyTable[i] = [];
-            this.frequencyTable[i][0] = companies[i][0];
-            this.frequencyTable[i][1] = 0;
+            this.frequencyTable[i+1] = [];
+            this.frequencyTable[i+1][0] = companies[i][0];
+            this.frequencyTable[i+1][1] = 0;
             // Insert the company names into the Trie with the
             // same index to keep track of the company
             for (let j = 0; j < companies[i].length; j++) {
@@ -32,7 +33,7 @@ class Trie {
                 node.children[char] = new TrieNode(char);
                 node.children[char].pre = node.pre + char;
             }
-            if (i === word.length - 1) {
+            if (i == word.length - 1) {
                 node.children[char].isEnd = true;
             }
             node = node.children[char];
@@ -42,13 +43,14 @@ class Trie {
 
     // Find the word in the trie given a starting node and a word
     find(node, word) {
+        console.log(word);
         for (let i = 0; i < word.length; i++) {
             let char = word[i];
-            if (char in node.children) {
-                node = node.children[char];
-            } else {
-                return null;
+            console.log("This is the char  " + char);
+            if (!(char in node.children)) {
+                return node.children[char];
             }
+            node = node.children[char];
         }
         return node;
     }
@@ -57,13 +59,12 @@ class Trie {
     // each name using the frequency table
     getRelevence(total) {
         let totalHit = 0;
-        for (let i = 0; i < this.frequencyTable.length; i++) {
+        for (let i = 1; i < this.frequencyTable.length; i++) {
             this.frequencyTable[i][2] = (this.frequencyTable[i][1] / total) * 100;
             totalHit += this.frequencyTable[i][1];
         }
         let totalRelevence = (totalHit / total) * 100;
         this.frequencyTable.push(["Total", totalHit, totalRelevence]);
-        this.frequencyTable.push(["Total Words", total]);
     }
 }
 

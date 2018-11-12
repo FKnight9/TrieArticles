@@ -1,5 +1,3 @@
-const Trie = require("./trie");
-const TrieNode = require("./trieNode");
 const help = require("./help");
 const readline = require("readline-sync");
 
@@ -12,15 +10,15 @@ class Article {
             if (this.isEnd(input)) {
                 break;
             } else {
-                this.text.push.apply(help.cleanInput(input).split(' '));
+                let inputArray = help.cleanInput(input).split(' ');
+                Array.prototype.push.apply(this.text, inputArray);
             }
         }
-        console.log("Article constructor has ended");
     }
 
     isEnd(input) {
         for (let i = 0; i < input.length; i++) {
-            if (text[i] != '.') {
+            if (input[i] != '.') {
                 return false;
             }
         }
@@ -28,17 +26,14 @@ class Article {
     }
 
     checkTrie(trie) {
-        this.map = new Array(trie.frequencyTable.length);
-        for (let i = 0; i < this.map.length; i++) {
-            this.map[i] = [];
-        }
         for (let i = 0; i < this.text.length; i++) {
+            let j = i;
             let node = trie.root;
             let temp;
             let hits = [];
             do {
                 temp = trie.find(node, this.text[j]);
-                if (temp === null) {
+                if (!temp) {
                     break;
                 } else if (temp.children[' '] == undefined && temp.isEnd == true) {
                     hits.push(temp.index);
@@ -47,14 +42,15 @@ class Article {
                     break;
                 } else if (temp.children[' '] != undefined && temp.isEnd == true) {
                     hits.push(temp.index);
-                    i++;
+                    j++;
+                    node = temp.children[' '];
                 } else if (temp.children[' '] != undefined && temp.isEnd == false) {
-                    i++;
-                    node = temp.children[''];
+                    j++;
+                    node = temp.children[' '];
                 }
             } while (j < this.text.length);
             for (let k = 0; k < hits.length; k++) {
-                trie.frequencyTable[hits[k]][1]++;
+                trie.frequencyTable[hits[k] + 1][1]++;
             }
         }
     }
