@@ -21,9 +21,18 @@ function cleanInput (input) {
 
 // Cleans the input from a given file, returns a 2d array
 function cleanInputFromFile(path) {
+    comp = readFile('companies.dat', 'utf8', function(err, str) {
+        if (err) {
+            console.log(err);
+        } 
+        else {
+            if (str === "" || typeof str !== "string") throw "companies.dat is empty"
+        }
 
-
+    cleanInput(comp)
+    
     return array;
+    
 }
 
 module.exports = {
